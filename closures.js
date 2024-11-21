@@ -27,9 +27,9 @@ function outerHavingFunction() {
   return function inner() {
     return ++count;
   };
-};
+}
 let innerFunc = outerHavingFunction();
-console.log("basic closure===>", innerFunc(), innerFunc()); // 1,2 
+console.log("basic closure===>", innerFunc(), innerFunc()); // 1,2
 
 /**
  * The above combination of function object with retained ER is called closure.
@@ -40,8 +40,8 @@ console.log("basic closure===>", innerFunc(), innerFunc()); // 1,2
 
 // Closure with Function Arguments or Function Factories:
 function multiplier(factor) {
-  return function(number) {
-      return number * factor;
+  return function (number) {
+    return number * factor;
   };
 }
 
@@ -53,28 +53,28 @@ console.log("Closure with Function Arguments 2 ===>", triple(5)); // 15
 
 // The above pattern is used  to create customized, reusable functions based on parameters passed to the factory (multiplier is factory function)
 
-// Private Variables Using Closures for Data Encapsulation and Privacy:
+//** Private Variables Using Closures for Data Encapsulation and Privacy: */
 
 function createCounter() {
   let count = 0;
 
   return {
-      increment: function() {
-          count++;
-          return count;
-      },
-      decrement: function() {
-          count--;
-          return count;
-      },
-      getCount: function() {
-          return count;
-      }
+    increment: function () {
+      count++;
+      return count;
+    },
+    decrement: function () {
+      count--;
+      return count;
+    },
+    getCount: function () {
+      return count;
+    },
   };
 }
 
 const counter = createCounter();
-console.log("counter=>",counter)
+console.log("counter=>", counter);
 console.log(counter.increment()); // 1
 console.log(counter.getCount()); // 1
 console.log(counter.increment()); // 2
@@ -83,25 +83,52 @@ console.log(counter.getCount()); // 1
 
 // The above pattern is used to create private variables and that variable can be modified using only the methods
 
-// Event Handlers with Context Using Closures:
+//** Event Handlers with Context Using Closures: */
 
+function applyFilter(filterType) {
+  // A mock function to simulate applying a filter on a dashboard
+  console.log(`Applying filter by: ${filterType}`);
+}
+function createFilterButtonHandler(filterType) {
+  // Function to generate a dynamic event handler with closure
+  return function () {
+    // The closure "remembers" the filterType even after this function is executed
+    applyFilter(filterType);
+  };
+}
+const buttonContainer = document.getElementById("filter-buttons");
+const filters = ["Region", "Sales", "Date"];
+filters.forEach(function (filter) {
+  const button = document.createElement("button");
+  button.innerHTML = `Filter by ${filter}`;
+  // Attach a dynamically created event handler using a closure
+  button.addEventListener("click", createFilterButtonHandler(filter));
+  // buttonContainer.appendChild(button);
+});
 
+//** The Issue with var and Asynchronous Operations in a Loop  */
 
-function x() {
-  var a = 7;
-  function y() {
-    console.log("value of 'a' from function y", a);
-  }
-  return y;
+for (var i = 0; i < 3; i++) {
+  setTimeout(() => console.log(i), 500); // output => 3 3 3 3
 }
 
-var z = x();
-z(); //7
+// Loop are synchronous and variable var is function scoped so the same instance of i is shared across all iterations
 
-// tricky question:
-// for (var i = 0; i < 3; i++) {
-//   setTimeout(() => console.log(i), 500); // output => 3 3 3 3
-// }
+// Solution:
+for (var i = 0; i < 3; i++) {
+  (function (i) {
+    // IIFE capturing 'i'
+    setTimeout(function () {
+      console.log(`Processing at index ${i}`);
+    }, 1000 * i);
+  })(i); // Pass 'i' to the IIFE
+}
+
+/** let variable in loops */
+
+for (let i = 0; i < 3; i++) {
+  setTimeout(() => console.log(i, "0000000"), 500); // output => 0 1 2
+}
 
 /**
  * References:

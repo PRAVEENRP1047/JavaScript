@@ -1,8 +1,15 @@
 /**
+ * Revisit closures for scenarios based on currying
+ */
+
+/**
  * Currying:
  *    It is a functional programming concept, in which we break down a function with multiple 
  * arguments into a series of functions with a single argument.
- *    During this we shouldn't alter the variables external to the function
+ *    During this we shouldn't alter the variables external to the function.
+ *    Currying is useful when you want to create specialized functions by fixing some arguments in advance. 
+ * This is known as partial application.
+ *    
  */
 
 const ordinaryAdd = (a, b) => a + b;
@@ -51,7 +58,7 @@ const filterByName = (list, name) => {
   return list.filter((person) => person.name !== name)
 }
 
-// console.log(filterByName(list, 'John')); // works fine and reusable
+console.log("filterByName",filterByName(list, 'John')); // works fine and reusable
 
 /* filterByName works fine but if we are looking to keep the code DRY then, we could move the filtering 
 * callback function into a variable called filtering
@@ -71,29 +78,55 @@ const curriedfilterByName = (list,name) => {
   return list.filter(curriedfiltering(name));
 }
 
-// console.log(curriedfilterByName(list, "John"));
+console.log("curriedfilterByName",curriedfilterByName(list, "John"));
 
-//implement a func which accept a func and return a curried one
-let curry = (fn) => {
-  let helper = (...args) => {
-    if(args.length >= fn.length){
-      return fn(...args);
-    }else{
-      let temp = (...args2) => {
-        return helper(...args, ...args2);
-      };
-      return temp;
-    }
+/** Creating Specialized Functions (Partial Application) */
+
+// Curried logger function
+function log(level) {
+  return function(message) {
+    console.log(`[${level}] ${message}`);
   };
-  return helper;
 }
 
-function sum(a, b, c, d) {
-  return a + b + c + d;
+// Create specialized loggers
+const infoLogger = log('INFO');
+const errorLogger = log('ERROR');
+
+// Usage
+infoLogger('This is an informational message');
+errorLogger('This is an error message');
+
+/** Functional Composition in Pipelines */
+
+/*Currying is useful in function composition, where you apply multiple functions to a value sequentially, 
+each transforming the value before passing it to the next function as below. */
+
+// Curried functions for transformation
+const multiply = x => y => x * y;
+const add = x => y => x + y;
+
+// Creating a pipeline of functions
+const pipeline = multiply(2)(3);  // Multiplies 3 by 2 => 6
+const finalResult = add(5)(pipeline);  // Adds 5 to 6 => 11
+
+console.log("Functional Composition in Pipelines",finalResult);  // Output: 11
+
+/** Dynamic Configurations and Customization */
+
+// Curried profile function
+function createProfile(name) {
+  return function(age) {
+    return function(location) {
+      return `Name: ${name}, Age: ${age}, Location: ${location}`;
+    };
+  };
 }
 
-let curriedSum = curry(sum);
-console.log(curriedSum(1)(2)(3)(4));
+// Usage
+const profile = createProfile('Alice')(30)('New York');
+console.log(profile);  // Output: Name: Alice, Age: 30, Location: New York
+
 
 
 /**
