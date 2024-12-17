@@ -84,11 +84,11 @@ console.log(counter.getCount()); // 1
 // The above pattern is used to create private variables and that variable can be modified using only the methods
 
 //** Event Handlers with Context Using Closures: */
-
 function applyFilter(filterType) {
   // A mock function to simulate applying a filter on a dashboard
-  console.log(`Applying filter by: ${filterType}`);
+ console.log(`Applying filter by: ${filterType}`);
 }
+
 function createFilterButtonHandler(filterType) {
   // Function to generate a dynamic event handler with closure
   return function () {
