@@ -39,4 +39,39 @@
   ### Stack
 
   - JS uses the stack data structure to store static or fixed-size data.
-  - 
+  - Static means the memory (size) need to be allocated for these
+    types (primitive and references) will be known during the compile time itself or
+    doesn't change during the run-time.
+
+  ### Heap
+
+  - JS uses the heap data structure to store the dynamic data.
+  - Dynamic means the memory need to be allocated for these types (non-primitive) will
+    change during the run-time (size is known at run-time) or not known at compile time.
+  - Objects will be stored in the heap memory but the reference to it will reside in the
+    stack memory
+
+## Garbage Collection
+
+- In languages such as C and C++ developers should deallocate the memory after the use.
+- If the memory is not freed up after use, the program will run with an unused allocated
+  memory space. This is known as memory leak.
+- To prevent such condition, JS comes with a Garbage collector along with the JS Engine.
+- It's job is to free up the unused memory block with garbage collection process.
+- There's no guarantee that there's an algorithm which clears up all the unused memory
+- But there's Mark and Sweep algorithm which performs efficiently by removing almost all
+  unused memory.
+
+  ### Mark and Sweep Algorithm
+
+  - It marks the objects in the heap memory that can't be reached by the window object as garbage
+    and removes it from the heap.
+  - One tradeoff is variables declared with var and undeclared variables.
+  - JS engine attaches the variables declared with the var to the window object.
+  - So it can't be removed by the garbage collector.
+
+## Reference
+
+- [Codedamn's blog](https://codedamn.com/news/javascript/memory-management-complete-guide)
+- [Turing's blog](https://www.turing.com/kb/handling-memory-management-in-javascript)
+- [felixgerschau's blog](https://felixgerschau.com/javascript-memory-management/)
