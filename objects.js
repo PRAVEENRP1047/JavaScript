@@ -1,5 +1,13 @@
-/** Ways to create an object */
 // "use strict";
+/**
+ *  In objects, key should be of type string or symbol only.
+ *  Any other type will be implicitly converted to string type.
+ *  Not optimized for frequent additions and removals of key-value pairs. Use Map instead.
+ *  Native Serialization (object to JSON) and Parsing (JSON to object) supported
+ */
+
+/** Ways to create an object */
+
 //1. Object literal notation:
 let person1 = {
   name: "Praveen",
