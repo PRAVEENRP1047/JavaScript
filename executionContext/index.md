@@ -13,7 +13,8 @@
 
 ## Environment Record
 
-- EC uses environment records to keep track and maintain the identifier bindings created for the variable declarations, function declarations and all the values created within that context.
+- EC uses environment records to keep track and maintain the identifier bindings created for the 
+variable declarations, function declarations and all the values created within that context.
 
 ## Global Execution Context's components
 
@@ -81,7 +82,7 @@ with var keyword and function declarations (In this case it points to the compon
 
 ## Memory Creation Phase
 
-- During this phase all the variables are stored in the memory component of the execution context as follows:
+- During this phase all the variables and functions are stored in the memory component of the execution context as follows:
 
   - variables with var keyword are initialized with the value 'undefined'
   - variables with let and const keywords are stored uninitialized.
