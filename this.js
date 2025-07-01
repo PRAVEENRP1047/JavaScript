@@ -1,4 +1,4 @@
-// "use strict";
+"use strict";
 
 // this in global scope:
 
@@ -47,6 +47,12 @@ function nestedRegularFunction() {
 }
 nestedRegularFunction();
 
+/**
+ * Note:
+ *  Even if its any level deep, if the function is directly without referring any object then
+ * in non-strict mode in the browsers we will get the value of this as Window
+ */
+
 // this keyword inside an object's method (regular function):
 
 const person = {
@@ -57,7 +63,7 @@ const person = {
       this
     ); // {"name": "Praveen", "greet": function(){ return 'Hi. Myself ${this.name}'}}
     function nestedRegularFunctionInsideMethod() {
-      console.log("nestedRegularFunctionInsideMethod=====", this);
+      console.log("nestedRegularFunctionInsideMethod=====", this); // strict => undefined | non-strict => Window 
     }
     nestedRegularFunctionInsideMethod();
   },
@@ -67,7 +73,8 @@ person.greet(); // Hi. Myself Praveen
 
 /**
  * Note:
- *    The value of this keyword inside an object's method is the object itself in both strict and non-strict mode
+ *    The value of this keyword inside an object's method is the object itself in both strict and 
+ * non-strict mode
  */
 
 // this inside an arrow function:
@@ -81,8 +88,10 @@ arrowFunctionSample();
 /**
  * Note:
  *    Arrow function do not have their own this binding. Meaning depending on how it's called regular
- * function's this keyword will be assigned a value. But arrow function's this keyword will not be assigned a value
- *    The value of this keyword inside an arrow function stays the same on the strict or non-strict mode.
+ * function's this keyword will be assigned a value. But arrow function's this keyword will not be 
+ * assigned a value
+ *    The value of this keyword inside an arrow function stays the same on the strict or non-strict 
+ * mode.
  *    Arrow functions retains the value of the enclosing lexical context. (where it's defined)
  *    And does not depend if it's called with reference to an object or not.
  */
@@ -91,11 +100,11 @@ arrowFunctionSample();
 // window.arrowFunctionSample(); // TypeError: is not a function
 
 /**
- * Notes:
  *    Output = Window object .
  *    Because the arrow function don't have its own context it takes the this context from surrounding
  * scope.
- *    It is not added to the global window object
+ *    It is not added to the global window object because the designers of modern JS didn't want to
+ * mess up the global object cleaner and less error prone.
  */
 
 // this keyword inside an object's method (arrow function):
@@ -138,7 +147,7 @@ nestedArrowFunctionPerson.greet(); // nestedArrowFunctionPerson object
  *    The value of this keyword inside an object's method (nested arrow function) inherits the this value of the scope within
  *  which it is enclosed in both strict and non-strict mode.
  *    In this it is enclosed within a method so it's this keyword value will be the value of the this keyword value of the arrow
- * function.
+ * function which in this case is the nestedArrowFunctionPerson object since greet is called with reference to it
  */
 
 // this keyword in DOM:
@@ -161,6 +170,17 @@ setTimeout(() => {
   console.log("from arrow function as callback in setTimeout",this) // non-strict mode => Window | strict mode => Window
 },1000);
 
+const obj = {
+  name: "Tester",
+  method: function() {
+    setTimeout(function() {
+      console.log("setTimeout inside object method====>", this);
+    }, 1000);
+    // try with arrow function as callback
+  }
+};
+obj.method();
+
 // this keyword in constructor function:
 
 function personConstructor(name) {
@@ -176,12 +196,10 @@ class Animal {
     this.name = name;
   }
   sound() {
-    console.log(this); // refers to the instance on which it was called
+    console.log("from class method=======>",this); // refers to the instance on which it was called
   }
 }
 const dog = new Animal("Dog");
-
-
 
 /**
  * Reference:

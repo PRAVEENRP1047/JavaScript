@@ -3,7 +3,8 @@
  *    It is the process by which the variable declarations and function declarations are stored
  * in the memory component of the execution context before the execution phase.
  *    During the memory creation phase, the variables with 'var' declarations are initiaziled with
- * value 'undefined' and variables with 'let' and 'const' declarations are stored uninitialized and
+ * value 'undefined' and variables with 'let' and 'const' declarations are stored uninitialized (internally by JS 
+ * but in devtools undefined is assigned as a placeholder for uninitialized but in script object not in global) and
  * function declarations are initialized with reference to the function itself.
  *    So during the execution phase when we try to access the 'var' variables 'undefined' is the
  * value we get and when trying to access the 'let' and 'const' variables we get Reference Error

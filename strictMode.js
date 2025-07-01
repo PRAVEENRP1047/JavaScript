@@ -1,6 +1,6 @@
 /**
  * Strict Mode:
- *    It is declared by using the derivative "use strict".
+ *    It is declared by using the directive "use strict".
  *    It was introduced in ES5.
  *    Prior versions of ES5 will ignore the derivative.
  *    Strict mode changes previously accepted bad syntax into real errors.
