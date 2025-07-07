@@ -15,7 +15,11 @@ function outer() {
 
   return ++count;
 }
-console.log("count in outer =========>", outer()); //output: 1 => As explained above there is no use of retaining the variable count. So, it will be garbage collected after the function execution
+console.log("count in outer =========>", outer()); 
+/**
+ * output: 1 => As explained above there is no use of retaining the variable count. 
+ * So, it will be garbage collected after the function execution
+ * */
 
 /**
  * It is possible to retain the reference to FER in which case it will not get garbage collected and
@@ -86,7 +90,7 @@ console.log(counter.getCount()); // 1
 //** Event Handlers with Context Using Closures: */
 function applyFilter(filterType) {
   // A mock function to simulate applying a filter on a dashboard
- console.log(`Applying filter by: ${filterType}`);
+  console.log(`Applying filter by: ${filterType}`);
 }
 
 function createFilterButtonHandler(filterType) {

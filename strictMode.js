@@ -6,7 +6,7 @@
  *    Strict mode changes previously accepted bad syntax into real errors.
  */
 
-// "use strict";
+"use strict";
 
 // Cannot use a variable before declaration:
 
@@ -20,11 +20,13 @@
 // Deleting variables or functions are not allowed:
 
 let y = 10;
+// console.log("y=====>", y);
 // delete y; //uncomment to see this in action
+// console.log("y=====>", y);
 
 /**
  * Note:
- * Syntax Error because delete can be called only on properties of an object. 
+ * Syntax Error => because delete can be called only on properties of an object. 
  * In non-strict mode, the command fails silently.
  */
 
@@ -43,7 +45,7 @@ function noDuplicateParamsInStrictMode(a) { //Uncaught SyntaxError: Duplicate pa
 // Octal numeric characters are not allowed:
 
 // let z = 010;  //uncomment this line to see it in action
-// console.log(z);
+// console.log("octal===>",z);
 
 /**
  * Note:

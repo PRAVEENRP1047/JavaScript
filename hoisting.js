@@ -1,24 +1,21 @@
 /**
  * Hoisting:
- *    It is the process by which the variable declarations and function declarations are stored
- * in the memory component of the execution context before the execution phase.
- *    During the memory creation phase, the variables with 'var' declarations are initiaziled with
- * value 'undefined' and variables with 'let' and 'const' declarations are stored uninitialized (internally by JS 
- * but in devtools undefined is assigned as a placeholder for uninitialized but in script object not in global) and
- * function declarations are initialized with reference to the function itself.
- *    So during the execution phase when we try to access the 'var' variables 'undefined' is the
- * value we get and when trying to access the 'let' and 'const' variables we get Reference Error
- * because they are uninitialized.
- * 
- * Alternative definition:
- *    It is the phenomenon by which we can access the function declarations and variable declarations 
- * without any errors.
+ *  During the memory creation phase of the execution context, JavaScript allocates memory for
+ * variables and functions.
+ *  var variables are hoisted and initialized with undefined.
+ *  let and const variables are hoisted but remain uninitialized (they are placed in the Temporal
+ * Dead Zone until their declaration is executed).
+ *  Function declarations are hoisted with their actual function reference.
+ *  This means you can access var variables before their declaration (getting undefined), but
+ * accessing let or const variables before their declaration causes a ReferenceError.
+ *  Overall, hoisting is the behavior that lets variable and function declarations appear to be
+ * “moved to the top” of their scop
  */
 
 getName();
 console.log(getName);
 // whole function prints for function declaration but for both function expression it is undefined
-console.log(x); // undefined 
+console.log(x); // undefined
 
 var x = 7;
 
@@ -59,19 +56,19 @@ let info = {
 
 var city = "Coimbatore";
 
-/**
- * Temporal Dead Zone:
- *    Reference Errors are thrown when trying to access uninitialized variables (let and const variable declarations).
- *    You cannot access variables with let and const before their declaration. The line before their
- *    declaration is known as Temporal Dead Zone.
- */
-
 // Output:
 
 /**
  * 5
  * undefined
  * Reference Error
+ */
+
+/**
+ * Temporal Dead Zone (TDZ):
+ *    TDZ is the period between the start of a block scope and the point where a let or const
+ * variable is initialized by its declaration statement. During this period, the variable is already
+ * declared (in the environment record) but remains uninitialized, so accessing it throws a ReferenceError.
  */
 
 /**

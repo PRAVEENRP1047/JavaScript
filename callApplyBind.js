@@ -46,13 +46,13 @@ let person4 = {
   age: 26,
 };
 
-let greetByDan = person1.greet.bind(person4,"Manchester", "UK"); // with partial application of args
-greetByDan();// "Manchester", "UK" can be passed while invoking also.
+let greetByDan = person1.greet.bind(person4, "Manchester", "UK"); // with partial application of args
+greetByDan(); // "Manchester", "UK" can be passed while invoking also.
 
 /**
- * Note: 
+ * Note:
  *    Bind method returns copy of the function with optional initial arguments which can be used later.
- * It is very helpful because it binds the method and the 'this context' with which it should be invoked.
+ *    It is very helpful because it binds the method and the 'this context' with which it should be invoked.
  */
 
 /**

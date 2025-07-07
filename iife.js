@@ -5,11 +5,11 @@
  */
 
 // Variation 1:
-!function () {
+!(function () {
   console.log(
     "Operator '!' instructs interpreter to treat it as a function expression."
   );
-}();
+})();
 
 /**
  * NOTE:
@@ -35,14 +35,14 @@
 
 (function () {
   console.log("I am an IIFE with parantheses after expression");
-}());
+})();
 
 // Variation 4:
 
-var result = (function () {
+var result = function () {
   return "From IIFE!";
-})();
-
+}();
+console.log("result====>", result);
 /**
  * NOTE:
  *    Here, we have omitted the parantheses because function keyword is not the first in the statement.
@@ -95,7 +95,6 @@ console.log("scenarion 2===>", result); // logs "From IIFE with return"
 
 //Note: Use Semicolon before IIFEs to avoid issues
 
-
 // Encapsulation / Avoid Global Scope Pollution
 
 (function () {
@@ -117,7 +116,7 @@ const CounterModule = (function () {
     },
     reset: function () {
       count = 0; // resetting the private variable
-    }
+    },
   };
 })();
 
@@ -126,8 +125,8 @@ const CounterModule = (function () {
 // CounterModule.reset();
 // console.log(CounterModule.increment()); // 1
 
-// Before ES6, JavaScript didn’t have built-in support for modules. Developers used IIFEs to 
-// encapsulate code and create private data (not accessible from outside) while still exposing public 
+// Before ES6, JavaScript didn’t have built-in support for modules. Developers used IIFEs to
+// encapsulate code and create private data (not accessible from outside) while still exposing public
 // methods.
 
 // Loop with closures
@@ -146,8 +145,7 @@ for (var i = 0; i < 3; i++) {
  * we use IIFE we can create a closure with it and make it work so it prints 0, 1 and 2
  */
 
-// 
-
+//
 
 /**
  * Reference:
