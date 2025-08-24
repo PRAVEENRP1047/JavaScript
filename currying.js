@@ -1,15 +1,8 @@
 /**
- * Revisit closures for scenarios based on currying
- */
-
-/**
  * Currying:
  *    It is a functional programming concept, in which we break down a function with multiple 
- * arguments into a series of functions with a single argument.
- *    During this we shouldn't alter the variables external to the function.
- *    Currying is useful when you want to create specialized functions by fixing some arguments in advance. 
- * This is known as partial application.
- *    
+ * parameters into a series of functions with a single parameter.
+ *    During this we shouldn't alter the variables external to the function to maintain purity of the function.   
  */
 
 const ordinaryAdd = (a, b) => a + b;
