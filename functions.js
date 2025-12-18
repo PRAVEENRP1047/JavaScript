@@ -18,7 +18,7 @@ function functionDeclaration() {
 // }
 
 /**
- *  The above code throws syntax error because function statements should contain name.
+ *  The above code throws syntax error when uncommented in the editor because function statements should contain name.
  *  Anonymous functions are used where functions are used as function expressions.
  */
 
@@ -43,6 +43,9 @@ var namedFunctionExpression = function xyz() {
  * Parameters - Placeholder variables used to capture the passed arguments
  */
 
-// First class functions:
+// First class functions (First class citizens):
 
-
+/**
+ *  It is treated like any other value so that we can assign a function to a variable, pass as an 
+ * argument, or even return from other function.
+ */

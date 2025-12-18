@@ -85,11 +85,14 @@ let innerFunc = outerHavingFunction();
 console.log("basic closure===>", innerFunc(), innerFunc()); // 1,2
 
 /**
+ *  Closure:
  *  The above combination of function with retained ER of the outer function is called closure.
  *  The inner function which has direct reference to the environment of the outer function
  * is a closure.
  *  Although the outer function's EC is destroyed, the inner function's reference to the outer
  * function's ER is retained which is created during the creation of inner function.
+ *  A closure is formed when an inner function remembers and can access its outer function’s variables,
+ * even after the outer function has returned, because the inner function retains a reference to its lexical environment.
  *
  *  LEXICAL ENVIRONMENT ENABLES THIS:
  *  - When inner() is created, it captures the lexical environment of outerHavingFunction()

@@ -9,7 +9,7 @@
  *  This means you can access var variables before their declaration (getting undefined), but
  * accessing let or const variables before their declaration causes a ReferenceError.
  *  Overall, hoisting is the behavior that lets variable and function declarations appear to be
- * “moved to the top” of their scop
+ * “moved to the top” of their scope
  */
 
 getName();

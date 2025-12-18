@@ -48,7 +48,7 @@ function outer() {
 
   function inner() {
     const innerVar = "Inner";
-    console.log(outerVar); // Can access outerVar
+    console.log("lexical inner call===>", outerVar); // Can access outerVar
   }
 
   // console.log(innerVar); // ReferenceError: innerVar is not defined
@@ -87,9 +87,9 @@ function outerA() {
 
   function inner() {
     const innerVar = "Inner";
-    console.log(innerVar); // 'Inner' (current scope)
-    console.log(outerVar); // 'Outer' (outer scope)
-    console.log(globalVar); // 'Global' (global scope)
+    console.log("Accessing all scopes ==>, inner", innerVar); // 'Inner' (current scope)
+    console.log("Accessing all scopes ==>, outer", outerVar); // 'Outer' (outer scope)
+    console.log("Accessing all scopes ==>, global", globalVar); // 'Global' (global scope)
   }
 
   inner();
@@ -144,7 +144,7 @@ console.log("x outside block:", x); // 50
 
 let t = 10;
 {
-  //var t = 20; // because var will have no boundaries in a block it is function scoped so error occurs
+  // var t = 20; // because var will have no boundaries in a block it is function scoped so error occurs
 }
 
 /**
